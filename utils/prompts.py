@@ -1,91 +1,117 @@
-PROMPT_SUMMARIZE = """
-You are an expert academic tutor. Summarize the following study material.
-Mode: {mode} (1=Quick Summary, 2=Detailed Summary)
-Format: {format_type} (Bullet points or Paragraph format)
+PROMPT_CHAT = """
+You are an expert AI study assistant in a workspace similar to NotebookLM.
+Your goal is to answer the user's questions based EXCLUSIVELY on the provided source materials.
 
-Ensure the summary includes:
-- Key concepts
-- Important definitions
-- Important points
-- Possible exam-relevant areas
-
-Do not invent information that isn't supported by the uploaded material.
-
-Study Material:
-{document_text}
+IMPORTANT RULES:
+1. Base your answer only on the provided context (Selected Sources).
+2. If the sources contain the answer, provide a detailed and helpful response. Cite the source name when possible.
+3. If the answer is NOT found in the provided sources, you MUST state: "I couldn't find this information in your selected sources. You can ask me to explain the topic using general knowledge." 
+4. Do NOT hallucinate information that is not in the text.
 """
 
-PROMPT_QUIZ = """
-You are an expert academic tutor. Generate a multiple-choice quiz based ONLY on the provided study material.
-Number of questions: {num_questions}
-Difficulty: {difficulty}
+PROMPT_SUMMARIZE = """
+Generate a beautiful, well-structured summary of the provided sources.
+Length: {length}
+Format: {format_type}
 
-Format the output strictly as a JSON list of objects with the following keys:
-- "question": The question text
-- "options": A list of exactly 4 choices (e.g., ["A) ...", "B) ...", "C) ...", "D) ..."])
-- "correct_answer": The exact string of the correct option from the options list
-- "explanation": A short explanation of why it is correct based on the text.
+Sections to include:
+- Overview
+- Key Concepts
+- Important Definitions
+- Important Points
+- Exam-Focused Revision
 
-Study Material:
-{document_text}
+Do not invent information. Use only the provided sources.
+"""
+
+PROMPT_NOTES = """
+Create structured AI Study Notes from the selected sources.
+
+Format exactly like this using Markdown:
+# [Topic Name]
+
+## Core Concept
+[Explanation]
+
+## Important Terms
+- **[Term]**: [Definition]
+
+## Key Points
+- [Point]
+- [Point]
+
+## Remember
+[Short memory aid]
+
+Ensure it covers the main ideas of the uploaded documents.
 """
 
 PROMPT_FLASHCARDS = """
-You are an expert academic tutor. Generate {num_flashcards} flashcards based ONLY on the provided study material.
+Generate {num} flashcards based ONLY on the provided sources.
+Difficulty: {difficulty}
 Focus on key terms, concepts, and definitions.
 
-Format the output strictly as a JSON list of objects with the following keys:
-- "front": The concept or question
-- "back": The definition or answer
+Output MUST be strictly a JSON list of objects:
+[
+  {
+    "front": "Question or Term",
+    "back": "Answer or Explanation"
+  }
+]
+"""
 
-Study Material:
-{document_text}
+PROMPT_QUIZ = """
+Generate a multiple-choice quiz based ONLY on the provided sources.
+Number of questions: {num}
+Difficulty: {difficulty}
+
+Output MUST be strictly a JSON list of objects:
+[
+  {
+    "question": "The question text",
+    "options": ["A) ...", "B) ...", "C) ...", "D) ..."],
+    "correct_answer": "The exact string of the correct option",
+    "explanation": "Short explanation"
+  }
+]
 """
 
 PROMPT_STUDY_PLAN = """
-You are an expert academic planner. Generate a structured, personalized study plan.
-Subject/topic: {topic}
-Number of days: {days}
-Hours available per day: {hours}
+Generate a structured study plan based on the topics in the provided sources.
 Exam date (optional): {exam_date}
-Difficulty level: {difficulty}
+Hours per day: {hours}
+Number of days: {days}
+Difficulty: {difficulty}
 
-Generate a clear daily plan including:
-- Day number
-- Topic to cover
-- Study duration
-- Tasks
-- Revision
-- Practice
-
-Provide the plan in markdown format.
+Format as a day-by-day Markdown schedule:
+### Day 1: [Topic]
+- **What to study**: ...
+- **Time**: ...
+- **Practice**: ...
+- **Revision**: ...
 """
 
-PROMPT_EXPLAIN_CONCEPT = """
-You are an expert academic tutor. Explain the following concept clearly.
+PROMPT_EXPLAIN = """
+Explain the concept based on the sources.
 Concept: {concept}
-Explanation Level: {level} (Beginner, Intermediate, Advanced)
-Include Example: {include_example}
+Level: {level}
+Explain with analogy: {analogy}
 
 Provide a structured response:
-- Simple explanation
-- Key idea
-- Example (if requested)
-- Important terms
-- Common mistake to avoid
+- Simple Explanation
+- Technical Explanation
+- Example
+- Analogy (if requested)
+- Key Takeaway
 """
 
 PROMPT_PEER_LEARNING = """
-You are helping a student prepare to teach a concept to their classmates. 
-Transform the given topic into a simple, engaging explanation suitable for peer learning.
-
-Topic: {topic}
-Audience level: {audience}
-Explanation length: {length}
+Help the student turn this material into something they can explain to classmates.
 
 Output format:
-- Simple explanation: (Easy to understand and explain)
-- Real-world analogy: (To make it relatable)
-- 3 key takeaways: (Core points to remember)
-- 3 discussion questions: (To engage the classmates)
+- Simple Explanation: (Clear and engaging)
+- Real-world Analogy: (To make it relatable)
+- 3 Key Takeaways: (Core points to emphasize)
+- 3 Discussion Questions: (To engage the classmates)
+- Mini Teaching Script: (A 2-minute script to teach this topic)
 """
