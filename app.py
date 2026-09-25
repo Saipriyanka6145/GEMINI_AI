@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 # Components
@@ -13,7 +14,8 @@ from components.study_plan import render_study_plan
 from components.explain import render_explain, render_peer_learning
 from utils.helpers import get_selected_sources
 
-load_dotenv()
+env_path = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
 st.set_page_config(page_title="Gemini Campus Study Assistant", layout="wide", initial_sidebar_state="expanded")
 
@@ -41,7 +43,7 @@ if "selected_sources" not in st.session_state:
 
 def main():
     if not os.environ.get("GEMINI_API_KEY"):
-        st.error("Missing GEMINI_API_KEY. Please set it in your .env file.")
+        st.error("Gemini API key is not configured.\nAdd GEMINI_API_KEY to the project's .env file and restart the application.")
         return
 
     render_header()
