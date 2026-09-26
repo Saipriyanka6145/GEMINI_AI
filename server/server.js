@@ -7,7 +7,6 @@ import { dirname, join } from 'path';
 import uploadRouter from './routes/upload.js';
 import chatRouter from './routes/chat.js';
 import summaryRouter from './routes/summary.js';
-import notesRouter from './routes/notes.js';
 import flashcardsRouter from './routes/flashcards.js';
 import quizRouter from './routes/quiz.js';
 import studyPlanRouter from './routes/studyPlan.js';
@@ -35,7 +34,6 @@ app.get('/api/health', (_req, res) => {
 app.use('/api/upload', uploadRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/summary', summaryRouter);
-app.use('/api/notes', notesRouter);
 app.use('/api/flashcards', flashcardsRouter);
 app.use('/api/quiz', quizRouter);
 app.use('/api/study-plan', studyPlanRouter);

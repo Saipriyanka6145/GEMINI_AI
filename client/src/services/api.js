@@ -26,9 +26,6 @@ export const api = {
   summary: (sources, type) =>
     request('/summary', { method: 'POST', body: JSON.stringify({ sources, type }) }),
 
-  notes: (sources) =>
-    request('/notes', { method: 'POST', body: JSON.stringify({ sources }) }),
-
   flashcards: (sources, count, difficulty) =>
     request('/flashcards', { method: 'POST', body: JSON.stringify({ sources, count, difficulty }) }),
 

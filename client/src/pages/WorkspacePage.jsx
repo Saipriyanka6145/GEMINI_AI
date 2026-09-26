@@ -3,7 +3,6 @@ import Sidebar from '../components/Sidebar.jsx';
 import Toolbar from '../components/Toolbar.jsx';
 import AskAI from '../components/AskAI.jsx';
 import Summary from '../components/Summary.jsx';
-import Notes from '../components/Notes.jsx';
 import Flashcards from '../components/Flashcards.jsx';
 import Quiz from '../components/Quiz.jsx';
 import StudyPlan from '../components/StudyPlan.jsx';
@@ -11,7 +10,7 @@ import ExplainConcept from '../components/ExplainConcept.jsx';
 import PeerLearning from '../components/PeerLearning.jsx';
 import './WorkspacePage.css';
 
-const TOOLS = ['ask', 'notes', 'summary', 'flashcards', 'quiz', 'studyplan', 'explain', 'peer'];
+const TOOLS = ['ask', 'summary', 'flashcards', 'quiz', 'studyplan', 'explain', 'peer'];
 
 export default function WorkspacePage({ sources, selectedSources, onToggleSource, onRemoveSource, onAddMore }) {
   const [activeTool, setActiveTool] = useState('ask');
@@ -32,7 +31,6 @@ export default function WorkspacePage({ sources, selectedSources, onToggleSource
     const props = { sources: activeSourceMap };
     switch (activeTool) {
       case 'ask':        return <AskAI {...props} />;
-      case 'notes':      return <Notes {...props} />;
       case 'summary':    return <Summary {...props} />;
       case 'flashcards': return <Flashcards {...props} />;
       case 'quiz':       return <Quiz {...props} />;

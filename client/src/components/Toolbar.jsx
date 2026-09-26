@@ -1,9 +1,8 @@
-import { MessageSquare, FileText, AlignLeft, Layers, HelpCircle, Calendar, Lightbulb, Users, PanelLeftClose, PanelLeft } from 'lucide-react';
+import { MessageSquare, AlignLeft, Layers, HelpCircle, Calendar, Lightbulb, Users, PanelLeftClose, PanelLeft } from 'lucide-react';
 import './Toolbar.css';
 
 const TOOLS = [
   { id: 'ask',        label: 'Ask AI',         icon: MessageSquare },
-  { id: 'notes',      label: 'Notes',          icon: FileText },
   { id: 'summary',    label: 'Summary',        icon: AlignLeft },
   { id: 'flashcards', label: 'Flashcards',     icon: Layers },
   { id: 'quiz',       label: 'Quiz',           icon: HelpCircle },
