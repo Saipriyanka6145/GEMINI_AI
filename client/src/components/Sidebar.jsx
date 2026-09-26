@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { FileText, File, Upload, Check, X, Brain, ChevronDown, ChevronRight, Plus } from 'lucide-react';
+import { FileText, File, Check, X, Brain, Plus } from 'lucide-react';
 import { api } from '../services/api.js';
 import './Sidebar.css';
 

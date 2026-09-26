@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { api } from '../services/api';
+import { api } from '../services/api.js';
 import './ToolPanel.css';
 
 export default function ExplainConcept({ sources }) {
