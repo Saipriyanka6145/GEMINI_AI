@@ -16,6 +16,11 @@ export default function HomePage({ onSourcesAdded }) {
       setError('Please upload PDF or TXT files only.');
       return;
     }
+    const oversized = valid.filter(f => f.size > 20 * 1024 * 1024);
+    if (oversized.length > 0) {
+      setError('Some files exceed the 20MB limit.');
+      return;
+    }
     setUploading(true);
     setError(null);
     try {
@@ -102,7 +107,7 @@ export default function HomePage({ onSourcesAdded }) {
         <section className="features">
           {[
             { icon: <BookOpen size={16} />, title: 'Ask AI', desc: 'Chat with your documents. Get answers grounded in your material.' },
-            { icon: <FileText size={16} />, title: 'Summarize & Notes', desc: 'Quick summaries, detailed notes, and exam-focused outlines.' },
+            { icon: <FileText size={16} />, title: 'Summaries', desc: 'Quick summaries and exam-focused outlines.' },
             { icon: <Brain size={16} />, title: 'Flashcards & Quiz', desc: 'Auto-generated flashcards and MCQ quizzes from your sources.' },
             { icon: <Zap size={16} />, title: 'Study Plan', desc: 'Personalized study schedule based on your uploaded material.' },
           ].map(f => (

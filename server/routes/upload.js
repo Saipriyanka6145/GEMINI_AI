@@ -13,6 +13,9 @@ router.post('/', upload.array('files', 10), async (req, res, next) => {
     const results = [];
     for (const file of req.files) {
       const text = await processDocument(file);
+      if (!text || !text.trim()) {
+        return res.status(400).json({ error: `File ${file.originalname} contains no readable text.` });
+      }
       results.push({ name: file.originalname, text, size: file.size, type: file.mimetype });
     }
     res.json({ sources: results });

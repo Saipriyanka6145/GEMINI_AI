@@ -10,6 +10,11 @@ export default function Sidebar({ open, sources, selectedSources, onToggle, onRe
   const handleUpload = useCallback(async (files) => {
     const valid = Array.from(files).filter(f => f.name.endsWith('.pdf') || f.name.endsWith('.txt'));
     if (!valid.length) return;
+    const oversized = valid.filter(f => f.size > 20 * 1024 * 1024);
+    if (oversized.length > 0) {
+      alert('Some files exceed the 20MB limit.');
+      return;
+    }
     setUploading(true);
     try {
       const { sources: newSources } = await api.upload(valid);

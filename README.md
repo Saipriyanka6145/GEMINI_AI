@@ -8,7 +8,7 @@ This project is built as a full-stack web application.
 ## Features
 - **Source-Centered AI Workspace:** Every tool automatically utilizes your selected sources as context.
 - **Ask AI:** Conversational interface that grounds answers strictly in your uploaded materials.
-- **AI Notes & Summaries:** Generate structured notes and summaries directly from your documents.
+- **AI Summaries:** Generate structured summaries directly from your documents.
 - **Interactive Quizzes:** Build custom MCQs tailored to your specific uploaded content.
 - **Flashcards:** Auto-generate flashcards focusing on key concepts from your sources.
 - **Study Planner:** Generate a day-by-day study schedule based on your material and time constraints.
@@ -34,7 +34,7 @@ gemini-campus-study-assistant/
 │   │   └── styles/         # CSS styles
 │   └── package.json        
 ├── server/                 # Backend Node.js Application
-│   ├── routes/             # API Endpoints (chat, notes, summary, upload, etc.)
+│   ├── routes/             # API Endpoints (chat, summary, upload, etc.)
 │   ├── services/           # Core logic (Gemini API, Document processing)
 │   ├── server.js           # Express Application
 │   └── package.json        

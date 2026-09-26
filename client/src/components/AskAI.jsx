@@ -60,7 +60,23 @@ export default function AskAI({ sources }) {
               {m.role === 'user' ? <User size={14} /> : <Bot size={14} />}
             </div>
             <div className="chat-msg-body prose">
-              <ReactMarkdown>{m.content}</ReactMarkdown>
+              <ReactMarkdown 
+                components={{
+                  a: ({node, ...props}) => {
+                    // Check if the link text matches a known source name (very basic heuristic) or starts with '#'
+                    if (props.href && props.href.startsWith('#')) {
+                      return <span className="source-chip" title="Source Reference" onClick={() => alert(`Referenced Source: ${props.href.slice(1)}`)}>{props.children}</span>;
+                    }
+                    // Alternatively if Gemini just links to the filename
+                    if (props.children && typeof props.children[0] === 'string' && (props.children[0].endsWith('.pdf') || props.children[0].endsWith('.txt'))) {
+                      return <span className="source-chip" title="Source Reference" onClick={() => alert(`Referenced Source: ${props.children[0]}`)}>{props.children}</span>;
+                    }
+                    return <a target="_blank" rel="noopener noreferrer" {...props} />;
+                  }
+                }}
+              >
+                {m.content}
+              </ReactMarkdown>
             </div>
           </div>
         ))}

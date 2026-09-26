@@ -43,6 +43,9 @@ app.use('/api/peer-learning', peerLearningRouter);
 // ── Global error handler ──────────────────────────────────────────────────────
 app.use((err, _req, res, _next) => {
   console.error('[server error]', err.message);
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(413).json({ error: 'File is too large. Maximum size is 20MB.' });
+  }
   res.status(500).json({ error: err.message || 'Internal server error' });
 });
 
